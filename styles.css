@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+#grids-container {
+    display: grid;
+    grid-template-columns: repeat(3, 150px);
+    grid-template-rows: repeat(3, 150px);
+    justify-content: center;
+}
+
+.grid {
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.one, .zero {
+    font-size: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
