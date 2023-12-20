@@ -1,26 +1,43 @@
 const grids = document.querySelectorAll('.grid');
-const user = createPlayer("X");
-const computer = createPlayer("O")
+const option = document.getElementById('shapeOption');
+const buttons = document.querySelectorAll('button')
+let user;
+let computer;
 let board = [
     " ", " ", " ",
     " ", " ", " ",
     " ", " ", " ",
-]
+];
 
-// Note: Scanning the board for empty squares
+document.addEventListener('DOMContentLoaded', () => {
+    option.showModal();
+});
+
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        userShape = button.value;
+        if (userShape === "X") {
+            user = createPlayer("X");
+            computer = createPlayer("O");
+        } else {
+            user = createPlayer("O");
+            computer = createPlayer("X");
+        }
+    });
+});
 
 grids.forEach((grid) => {
-    grid.addEventListener('click', (event) => {
+    grid.addEventListener('click', () => {
         if (isFinished(board, user.shape) || isFinished(board, computer.shape)) {
             return;
         }
+
         if (user.shape == "X") {
             grid.classList.add("one");
-        } else if (grid.textContent == "O") {
+        } else if (user.shape == "O") {
             grid.classList.add("zero");
         }
 
-        
         if (grid.textContent === "") {
             grid.textContent = user.shape;
         }
@@ -28,7 +45,6 @@ grids.forEach((grid) => {
         
     })
 });
-
 
 function createPlayer(shape) {
     let squaresOccupied = [];
@@ -43,23 +59,20 @@ function createPlayer(shape) {
     }
 }
 
-
 function makeMove(board, index) {
+    let declareWinner = document.querySelector('#declareWinner');
+    
     if (board[index] === " " && !isFinished(board, user.shape)) {
         board[index] = user.shape;
-        
         if (isFinished(board, user.shape)) {
-            console.log(`${user.shape} won the game!!!`)
-        } else if (isFinished(board, computer.shape)) {
-            console.log(`${computer.shape} won the game!!!`)
+            declareWinner.textContent = "You won.";       
         } else {
             makeOpponentMove(board, computer.shape);
         }
 
-
     } else {
-        console.log("Can't make a move!");
-    }
+        declareWinner.textContent = "Can't do it";       
+    } 
 
 
 
@@ -83,11 +96,12 @@ function makeOpponentMove(board, shape) {
         grid.classList.add("zero");
     }    
     grid.textContent = shape
+    if (isFinished(board, computer.shape)) {
+        declareWinner.textContent = "You lost...";       
+    }
 }
 
-
 function isFinished(board, shape) {
-
     // Row
     for (let row = 0; row < board.length; row++) {
         if (board[row * 3] === shape && board[row * 3 + 1] === shape && board[row * 3 + 2] === shape) {
@@ -109,6 +123,4 @@ function isFinished(board, shape) {
         return true;
     } 
     return false;
-    
-
 }

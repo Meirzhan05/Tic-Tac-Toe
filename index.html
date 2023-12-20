@@ -7,7 +7,17 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <dialog id="shapeOption">
+        <h1>Choose your shape</h1>
+        <form method="dialog" action="#" id="dialogForm">
+            <button type="submit" name="X" value="X" id="x-btn">X</button>
+            <button type="submit" name="O" value="O" id="o-btn">O</button>
+        </form>
+    </dialog>
+
+    
     <div id="container">
+        <div id="declareWinner"></div>
         <div id="grids-container">
             <div class="grid" id="0"></div>
             <div class="grid" id="1"></div>
@@ -21,7 +31,7 @@
         </div>
     </div>
 
-    <div id="declare"></div>
+
     <script src="script.js"></script>
 </body>
 </html>
