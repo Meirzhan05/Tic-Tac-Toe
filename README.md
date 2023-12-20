@@ -14,7 +14,7 @@ This project is a web-based interactive game of Tic-Tac-Toe, designed for play d
 
 ## Live Preview
 
-- **Live Demo**: [Link to Live Demo]
+- [Link to Live Demo](https://meirzhan05.github.io/Tic-Tac-Toe/)
 
 ## How to Play
 
